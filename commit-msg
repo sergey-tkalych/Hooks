@@ -1,0 +1,14 @@
+#!/bin/env php
+<?php
+	checkMessage(file_get_contents($argv[1]));
+	exit(0);
+	 
+	function checkMessage($message)
+	{
+		$pattern = '/^JRA-[0-9]+ #comment \w+/';
+		if (!preg_match($pattern, $message))
+		{
+			echo "The commit message doesn't match: JRA-[number] #comment [text]";
+			exit(1);
+		}
+	}
